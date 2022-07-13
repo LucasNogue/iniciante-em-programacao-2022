@@ -38,7 +38,7 @@ function verificarLinhas(areasSimbolo,simbolo){
     let quantidadeLinha3 = areasSimbolo.filter(area => area.linha === 3);
     
     if(quantidadeLinha1.length === 3 || quantidadeLinha2.length === 3 || quantidadeLinha3.length === 3){
-        exibirResultado(simbolo + " É O VENCEDOR");
+        exibirResultado( "JOGADOR VENCEDOR: " + simbolo);
     }
 }
 
@@ -48,7 +48,7 @@ function verificarColunas(areasSimbolo,simbolo){
     let quantidadeColuna3 = areasSimbolo.filter(area => area.coluna === 3);
     
     if(quantidadeColuna1.length == 3 || quantidadeColuna2.length == 3 || quantidadeColuna3.length == 3){
-       exibirResultado(simbolo + " É O VENCEDOR");
+       exibirResultado("JOGADOR VENCEDOR: " + simbolo);
     }
 }
 
@@ -60,11 +60,11 @@ function verificarDiagonal(areasSimbolo,simbolo){
     let posicaoLinha3Coluna3 = areasSimbolo.find(area => area.linha === 3 && area.coluna == 3);
 
     if(posicaoLinha1Coluna3 !== undefined && posicaoLinha2Coluna2 !== undefined && posicaoLinha3Coluna1 !== undefined){
-      return exibirResultado(simbolo + " É O VENCEDOR");
+      return exibirResultado("JOGADOR VENCEDOR: " + simbolo);
     }
 
     if(posicaoLinha1Coluna1 !== undefined && posicaoLinha2Coluna2 !== undefined && posicaoLinha3Coluna3 !== undefined){
-      return exibirResultado(simbolo + " É O VENCEDOR");
+      return exibirResultado("JOGADOR VENCEDOR: " + simbolo);
     }
 }
 
