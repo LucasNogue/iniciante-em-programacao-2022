@@ -4,6 +4,7 @@ const O = "O";
 let quantidadeJogadas = 0;
 
 let simbolo = X;
+let jogoAcabou = false;
 
 //array de objetos
 let areasX = [];
@@ -39,6 +40,7 @@ function verificarLinhas(areasSimbolo,simbolo){
     
     if(quantidadeLinha1.length === 3 || quantidadeLinha2.length === 3 || quantidadeLinha3.length === 3){
         exibirResultado( "JOGADOR VENCEDOR: " + simbolo);
+        jogoAcabou = true;
     }
 }
 
@@ -49,6 +51,7 @@ function verificarColunas(areasSimbolo,simbolo){
     
     if(quantidadeColuna1.length == 3 || quantidadeColuna2.length == 3 || quantidadeColuna3.length == 3){
        exibirResultado("JOGADOR VENCEDOR: " + simbolo);
+       jogoAcabou = true;
     }
 }
 
@@ -60,10 +63,12 @@ function verificarDiagonal(areasSimbolo,simbolo){
     let posicaoLinha3Coluna3 = areasSimbolo.find(area => area.linha === 3 && area.coluna == 3);
 
     if(posicaoLinha1Coluna3 !== undefined && posicaoLinha2Coluna2 !== undefined && posicaoLinha3Coluna1 !== undefined){
+      jogoAcabou = true;
       return exibirResultado("JOGADOR VENCEDOR: " + simbolo);
     }
 
     if(posicaoLinha1Coluna1 !== undefined && posicaoLinha2Coluna2 !== undefined && posicaoLinha3Coluna3 !== undefined){
+      jogoAcabou = true;
       return exibirResultado("JOGADOR VENCEDOR: " + simbolo);
     }
 }
@@ -73,6 +78,8 @@ function verificarEmpate(){
 
     if(quantidadeJogadas === 9){
         exibirResultado("EMPATE");
+        jogoAcabou = true;
+
     }
 }
 
@@ -83,10 +90,22 @@ function VerificarVencedor(areasSimbolo,simbolo){
 }
 
 function reiniciarJogo() {
-    location. reload();
+    location.reload();
 }
 
 function selecionarArea(posicaoLinha, posicaoColuna) {
+    
+    let verificaAreaX = areasX.find(area => area.linha === posicaoLinha && area.coluna == posicaoColuna);
+    let verificaAreaO = areasX.find(area => area.linha === posicaoLinha && area.coluna == posicaoColuna);
+
+    if(jogoAcabou){
+        return;
+    }
+
+    if(verificaAreaO || verificaAreaX !== undefined){
+        return;
+    }
+
     desenharSimbolo(simbolo, posicaoLinha, posicaoColuna);
     salvarArea(simbolo, posicaoLinha, posicaoColuna);
     verificarEmpate();
